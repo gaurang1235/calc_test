@@ -5,8 +5,7 @@ pipeline {
 
 	agent any
 	environment{
-	    export PATH="/opt/homebrew/bin//mvn:$PATH"
-	    export PATH="/usr/local/bin/docker:$PATH"
+	    PATH = "/opt/homebrew/bin:/usr/local/bin/docker:$PATH"
 	}
 
     stages {
