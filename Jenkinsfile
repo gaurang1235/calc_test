@@ -4,6 +4,9 @@ pipeline {
     // available nodes.
 
 	agent any
+	environment{
+	    PATH = "/opt/homebrew/bin:$PATH"
+	}
 
     stages {
         stage('Git Pull') {
