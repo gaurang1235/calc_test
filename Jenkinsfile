@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build Docker Images') {
             steps {
-                sh 'docker build -t inspiringrai/calcproj:latest .'
+                sh 'docker build -t iiitbgaurang/calctest:latest .'
             }
         }
 //         stage('Publish Docker Images') {
