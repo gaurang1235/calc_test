@@ -10,9 +10,8 @@ pipeline {
             steps {
                 // Get code from a GitHub repository
                 // Make sure to add your own git url and credentialsId
-				git url: 'https://github.com/inspiringrai/MINI_PROJECT.git',
-				branch: 'main',
-                credentialsId: 'GitCredential'
+				git url: 'https://github.com/gaurang1235/calc_test.git',
+				branch: 'main'
             }
         }
         stage('Maven Build') {
@@ -26,29 +25,29 @@ pipeline {
                 sh 'docker build -t inspiringrai/calcproj:latest .'
             }
         }
-        stage('Publish Docker Images') {
-            steps {
-                withDockerRegistry([ credentialsId: "dockerid", url: "" ]) {
-                    sh 'docker push inspiringrai/calcproj:latest'
-                }
-            }
-        }
-        stage('Clean Docker Images') {
-            steps {
-                sh 'docker rmi -f inspiringrai/calcproj:latest'
-            }
-        }
-        stage('Deploy and Run Image'){
-            steps {
-                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'playbook.yml', sudoUser: null
-            }
-        }
+//         stage('Publish Docker Images') {
+//             steps {
+//                 withDockerRegistry([ credentialsId: "dockerid", url: "" ]) {
+//                     sh 'docker push inspiringrai/calcproj:latest'
+//                 }
+//             }
+//         }
+//         stage('Clean Docker Images') {
+//             steps {
+//                 sh 'docker rmi -f inspiringrai/calcproj:latest'
+//             }
+//         }
+//         stage('Deploy and Run Image'){
+//             steps {
+//                 ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'playbook.yml', sudoUser: null
+//             }
+//         }
 
     }
 
-    post {
-        always {
-            sh 'docker logout'
-        }
-    }
+//     post {
+//         always {
+//             sh 'docker logout'
+//         }
+//     }
 }
